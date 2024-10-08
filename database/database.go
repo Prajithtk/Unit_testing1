@@ -16,7 +16,7 @@ func AutoMigrate(db *gorm.DB) {
 	db.AutoMigrate(&models.User{})
 }
 func CreateDB() {
-	DSN := "host=localhost user=postgres password=123 dbname=usertest port=5432"
+	DSN := "host=localhost user=postgres password=123 dbname=postgres port=5432"
 	db, err := gorm.Open(postgres.Open(DSN), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err)
