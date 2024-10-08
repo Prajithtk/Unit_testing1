@@ -63,7 +63,7 @@ func TestUserEdit(t *testing.T) {
 		router.PATCH("/user/edit/:id", controller.EditUser)
 /// tiy
 		user := models.User{
-			Name:     "userEdit1",
+			Name:     "userEdit",
 			Email:    "userEdit@gmail.com",
 			Password: "userEdit@123",
 		}
@@ -75,6 +75,8 @@ func TestUserEdit(t *testing.T) {
 		router.ServeHTTP(w, req)
 
 		assert.Equal(t, http.StatusOK, w.Code)
+		
+		fmt.Println("=====================",w.Code)
 		assert.Contains(t, w.Body.String(), "Successfully updated user")
 	})
 }
