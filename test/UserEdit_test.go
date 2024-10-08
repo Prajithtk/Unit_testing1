@@ -61,7 +61,7 @@ func TestUserEdit(t *testing.T) {
 
 		router := gin.Default()
 		router.PATCH("/user/edit/:id", controller.EditUser)
-
+/// tiy
 		user := models.User{
 			Name:     "userEdit1",
 			Email:    "userEdit@gmail.com",
