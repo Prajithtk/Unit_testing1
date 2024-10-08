@@ -63,7 +63,7 @@ func TestUserEdit(t *testing.T) {
 		router.PATCH("/user/edit/:id", controller.EditUser)
 /// tiy
 		user := models.User{
-			Name:     "userEdit1",
+			Name:     "userEdit",
 			Email:    "userEdit@gmail.com",
 			Password: "userEdit@123",
 		}
