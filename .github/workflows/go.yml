@@ -38,9 +38,20 @@ jobs:
         echo "${EC2_KEY}" > "key.pem"
         chmod 400 key.pem  
         ssh -i "key.pem" -o StrictHostKeyChecking=no ubuntu@ec2-3-111-32-69.ap-south-1.compute.amazonaws.com << 'EOF'
+          # Install Go if it's not installed
+          if ! command -v go &> /dev/null; then
+            echo "Go not found. Installing Go..."
+            wget https://go.dev/dl/go1.20.8.linux-amd64.tar.gz
+            sudo tar -C /usr/local -xzf go1.20.8.linux-amd64.tar.gz
+            echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+            source ~/.bashrc
+          fi
+          
+          # Go to project directory and run the application
           cd Unit_testing1
           git pull
           go run main.go
           exit
         EOF
+
 
