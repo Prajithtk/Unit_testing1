@@ -36,7 +36,7 @@ jobs:
            EC2_KEY: ${{ secrets.EC2_PEM }}
         run: |
          echo "${EC2_KEY}" > key.pem
-         chmod 400 "key.pem"  
+         chmod 400 key.pem  
          ssh -i "key.pem" ubuntu@ec2-3-111-32-69.ap-south-1.compute.amazonaws.com
          cd Unit_testing1
          git pull
