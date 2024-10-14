@@ -9,8 +9,6 @@ import (
 )
 
 var DB *gorm.DB
-/// testing
-/// testing two
 
 func AutoMigrate(db *gorm.DB) {
 	db.AutoMigrate(&models.User{})
