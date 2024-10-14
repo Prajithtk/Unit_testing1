@@ -32,27 +32,17 @@ jobs:
    steps:
     - name: Deploy to EC2
       env:
-         EC2_KEY: ${{ secrets.EC2_PEM }}
+        EC2_KEY: ${{ secrets.EC2_PEM }}
       run: |
         echo "${EC2_KEY}" > "key.pem"
-        chmod 400 key.pem  
-        ssh -i "key.pem" -o StrictHostKeyChecking=no ubuntu@ec2-3-111-32-69.ap-south-1.compute.amazonaws.com << 'EOF'
-
-          # Kill all Go processes
-          killall -9 go
-          # Ensure Go is available
-          export PATH=$PATH:/usr/local/go/bin
-          
-          # Go to project directory and pull the latest code
+        chmod 400 key.pem
+        ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i "key.pem" ubuntu@ec2-3-111-32-69.ap-south-1.compute.amazonaws.com << EOF
           cd Unit_testing1
           git pull
-
-          # Run the server in the background
-          nohup go run main.go &
-
-          # Exit the SSH session immediately after starting the server
+          nohup go run main.go > log.out 2>&1 &
           exit
         EOF
+
 
 
 
