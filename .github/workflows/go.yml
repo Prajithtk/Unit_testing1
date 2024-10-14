@@ -37,6 +37,9 @@ jobs:
         echo "${EC2_KEY}" > "key.pem"
         chmod 400 key.pem  
         ssh -i "key.pem" -o StrictHostKeyChecking=no ubuntu@ec2-3-111-32-69.ap-south-1.compute.amazonaws.com << 'EOF'
+          # Kill any process running on port 8080
+          sudo fuser -k 8080/tcp
+          
           # Ensure Go is available
           export PATH=$PATH:/usr/local/go/bin
           
@@ -46,10 +49,8 @@ jobs:
 
           # Run the server in the background
           nohup go run main.go &
-
-          # Exit the SSH session immediately after starting the server
-          exit
         EOF
+
 
 
 
