@@ -37,14 +37,14 @@ jobs:
         echo "${EC2_KEY}" > "key.pem"
         chmod 400 key.pem  
         ssh -i "key.pem" -o StrictHostKeyChecking=no ubuntu@ec2-3-111-32-69.ap-south-1.compute.amazonaws.com << 'EOF'
-         # Explicitly set PATH to include Go
+          # Ensure the PATH is set correctly
           export PATH=$PATH:/usr/local/go/bin
           
-          # Go to project directory and run the application
+          # Go to project directory and pull the latest code
           cd Unit_testing1
           git pull
+          go version  # Verify Go version
           go run main.go
-          exit
         EOF
 
 
