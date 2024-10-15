@@ -35,6 +35,7 @@ func SetupTestDBSignin(t *testing.T) (sqlmock.Sqlmock, func()) {
 	}
 
 	database.SetDB(db)
+	//new change
 	mock.ExpectExec("DELETE FROM users").WillReturnResult(sqlmock.NewResult(0, 0))
 	database.DB.Exec("DELETE FROM users")
 	password, _ := bcrypt.GenerateFromPassword([]byte("user@123"), bcrypt.DefaultCost)
