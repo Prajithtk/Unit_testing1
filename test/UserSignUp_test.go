@@ -29,6 +29,7 @@ func SetupTestDBSignup() (*gorm.DB, sqlmock.Sqlmock) {
 	if err != nil {
 		panic("failed to open gorm db connection")
 	}
+	// new change implemented
 	database.SetDB(gormDB)
 	return gormDB, mock
 }
