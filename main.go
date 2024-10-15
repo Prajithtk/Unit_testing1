@@ -11,5 +11,5 @@ func main() {
 	database.CreateDB()
 	router := gin.Default()
 	routers.UserRoutes(router)
-	router.Run(":8082")
+	router.Run(":8080")
 }
