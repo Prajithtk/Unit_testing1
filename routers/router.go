@@ -11,4 +11,6 @@ func UserRoutes(router *gin.Engine){
 	router.POST("/signin", controller.UserSignIn)
 	router.GET("/userlist", controller.UserShow)
 	router.PATCH("/user/edit/:id", controller.EditUser)
+
+	//try
 }
